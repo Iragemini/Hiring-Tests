@@ -68,17 +68,12 @@ describe('Key-value service tests', () => {
       expect(storageMock.getValue.withArgs(key).calledOnce).to.be.true;
     });
 
-    it('should throw an error if the key does not exist', async () => {
-      storageMock.getValue.resolves(null);
+    it('should return an empty value if the key does not exist', async () => {
+      storageMock.getValue.resolves({ value: '' });
 
-      try {
-        await keyValueService.getValue(key);
-      } catch (e) {
-        expect(e instanceof NoKeyFoundError).to.be.true;
-      } finally {
-        expect(storageMock.getValue.calledOnce).to.be.true;
-        expect(storageMock.getValue.calledWith(key)).to.be.true;
-      }
+      expect(await keyValueService.getValue(key)).to.be.empty;
+      expect(storageMock.getValue.calledOnce).to.be.true;
+      expect(storageMock.getValue.calledWith(key)).to.be.true;
     });
 
     it('should return an empty value if the key has expired', async () => {

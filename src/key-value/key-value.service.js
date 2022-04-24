@@ -31,16 +31,9 @@ export default class KeyValueService {
    *
    * @param {string} key - The key to associate with value
    * @returns {Promise<string>} Returns value for a given key
-   * @throws {NoKeyFoundError} Throws an error if the key doesn't exist
    */
   getValue = async (key) => {
-    const valueObj = await this.keyValueStorage.getValue(key);
-
-    if (!valueObj) {
-      throw new NoKeyFoundError(key);
-    }
-
-    const { value, expiry } = valueObj;
+    const { value, expiry } = await this.keyValueStorage.getValue(key);
 
     if (expiry && Date.now() > new Date(expiry).getTime()) {
       return '';
