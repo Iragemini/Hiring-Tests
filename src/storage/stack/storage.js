@@ -18,7 +18,7 @@ export default class StackStorage {
   /**
    * Get top item of the stack
    *
-   * @returns {Promise<string>} Returns the top item of the stack
+   * @returns {Promise<string|null>} Returns the top item of the stack
    */
   getItem = async () => {
     if (!this.storage.length) {
