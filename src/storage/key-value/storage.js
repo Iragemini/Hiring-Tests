@@ -30,13 +30,13 @@ export default class KeyValueStorage {
    *
    * @async
    * @param {string} key
-   * @returns {Promise<object>} Returns value object
+   * @returns {Promise<object|null>} Returns value object
    */
   getValue = async (key) => {
     const valueObj = this.storage.get(key);
 
     if (!valueObj) {
-      return { value: '' };
+      return null;
     }
 
     return valueObj;

@@ -27,11 +27,8 @@ describe('Key-value storage tests', () => {
   });
 
   describe('[METHOD] getValue', () => {
-    it('should return empty value if the key does not exist', async () => {
-      const result = await keyValueStorage.getValue(item.key);
-
-      expect(result).to.has.all.keys('value');
-      expect(result.value).to.be.empty;
+    it('should return null if the key does not exist', async () => {
+      expect(await keyValueStorage.getValue(item.key)).to.be.null;
     });
 
     describe('storage has items', () => {

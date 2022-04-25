@@ -69,7 +69,7 @@ describe('Key-value service tests', () => {
     });
 
     it('should return an empty value if the key does not exist', async () => {
-      storageMock.getValue.resolves({ value: '' });
+      storageMock.getValue.resolves(null);
 
       expect(await keyValueService.getValue(key)).to.be.empty;
       expect(storageMock.getValue.calledOnce).to.be.true;

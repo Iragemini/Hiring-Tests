@@ -33,7 +33,13 @@ export default class KeyValueService {
    * @returns {Promise<string>} Returns value for a given key
    */
   getValue = async (key) => {
-    const { value, expiry } = await this.keyValueStorage.getValue(key);
+    const valueObj = await this.keyValueStorage.getValue(key);
+
+    if(!valueObj) {
+      return '';
+    }
+
+    const { value, expiry } = valueObj;
 
     if (expiry && Date.now() > new Date(expiry).getTime()) {
       return '';
