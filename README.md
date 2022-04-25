@@ -29,6 +29,8 @@
 
 ### Endpoints
 
+- [**Documentation**](https://documenter.getpostman.com/view/17476349/UyrBivjL) 
+
 - **Base URL:** `http://localhost:<PORT>`
   
   ---
