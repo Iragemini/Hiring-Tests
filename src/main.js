@@ -5,7 +5,7 @@ import errorHandler from './middleware/errorHandler.js';
 import stackRouter from './stack/stack.routes.js';
 import keyValueRouter from './key-value/key-value.routes.js';
 
-const PORT = config.server.port;
+const { server: { port } } = config;
 const app = express();
 
 app.use(express.json());
@@ -19,6 +19,6 @@ app.use((req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server has been started on port ${PORT}...`);
+app.listen(port, () => {
+  console.log(`Server has been started on port ${port}...`);
 });
